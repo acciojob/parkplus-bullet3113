@@ -26,7 +26,7 @@ public class ReservationController {
             Reservation reservation = reservationService.reserveSpot(userId, parkingLotId, timeInHours, numberOfWheels);
             return new ResponseEntity(reservation, HttpStatus.OK);
         } catch (CannotMakeReservationException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(null, HttpStatus.NOT_FOUND);
         }
     }
 }
