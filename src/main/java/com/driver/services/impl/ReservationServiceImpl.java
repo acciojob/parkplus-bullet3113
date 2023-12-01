@@ -31,7 +31,8 @@ public class ReservationServiceImpl implements ReservationService {
 
         // parking lot not found
         if(parkingLot == null) {
-            throw new CannotMakeReservationException("Cannot make reservation");
+            return null;
+//            throw new CannotMakeReservationException("Cannot make reservation");
         }
 
         List<Spot> spotList = parkingLot.getSpotList();
@@ -56,13 +57,19 @@ public class ReservationServiceImpl implements ReservationService {
             }
         }
 
-        if(spotId == -1) throw new CannotMakeReservationException("Cannot make reservation");
+        if(spotId == -1) {
+            return null;
+//            throw new CannotMakeReservationException("Cannot make reservation");
+        }
 
         int totalPrice = min * timeInHours;
 
         User user = userRepository3.findById(userId).orElse(null);
 
-        if(user == null) throw new CannotMakeReservationException("Cannot make reservation");
+        if(user == null) {
+            return null;
+//            throw new CannotMakeReservationException("Cannot make reservation");
+        }
 
         List<Reservation> reservationList = user.getReservationList();
 
